@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.pyc
+crm.db
+.gemini/
+static/app.js.map
+error.json
+error2.json
+models.txt

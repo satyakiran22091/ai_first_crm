@@ -100,13 +100,25 @@ def analyze_lead(lead_id: int, db: Session = Depends(get_db)):
 
     try:
         prompt = f"""
-        Analyze this sales lead and provide your response exactly in this format separated by pipes (|):
-        Priority (High/Medium/Low) | Recommend next action | Short personalized outreach message
+        You are a world-class Senior Sales Strategist and Lead Intelligence Expert. 
+        Analyze the following lead and categorize it with high precision.
 
-        Lead Details:
+        CRITERIA FOR PRIORITY:
+        - HIGH: Enterprise companies, Fortune 500, fast-growing tech startups, or any lead with 'Qualified' status.
+        - MEDIUM: Mid-sized businesses, professional LinkedIn-style profiles, or leads with warm-status indicators.
+        - LOW: Incomplete data, generic email providers (gmail/yahoo) at small companies, or very cold leads.
+
+        FORMAT: Priority (High/Medium/Low) | Recommend next action | Short personalized outreach message
+        RULES:
+        1. Keep the Outreach Message under 150 characters.
+        2. The Next Action must be specific and include a time-bound suggestion (e.g., 'within 24 hours').
+        3. Response must be EXACTLY in the 3-part pipe-separated format.
+
+        LEAD DATA:
         Name: {db_lead.name}
         Company: {db_lead.company}
-        Status: {db_lead.status}
+        Current Status: {db_lead.status}
+        Email: {db_lead.email}
         """
 
         response = client.models.generate_content(

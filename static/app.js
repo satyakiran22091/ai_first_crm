@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const aiLoading = document.getElementById("ai-loading");
     const aiResults = document.getElementById("ai-results");
 
+    // Create Toast Element
+    const toast = document.createElement("div");
+    toast.className = "toast-container";
+    toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span id="toast-msg">Feature Coming Soon!</span>`;
+    document.body.appendChild(toast);
+
+    function showToast(message) {
+        document.getElementById("toast-msg").textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
     // API Configuration
     const API_BASE = "";
 
@@ -25,6 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // -----------------------------------------
     // Event Listeners
     // -----------------------------------------
+
+    // Sidebar Links (Coming Soon)
+    document.querySelectorAll(".nav-links li:not(.active)").forEach(li => {
+        li.addEventListener("click", () => {
+            const feature = li.innerText.trim();
+            showToast(`${feature} feature is coming soon!`);
+        });
+    });
 
     // Modals
     openNewLeadBtn.addEventListener("click", () => newLeadModal.classList.remove("hidden"));

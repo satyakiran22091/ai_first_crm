@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CRM Dashboard</title>
+    <meta name="description" content="AI-powered customer relationship management dashboard">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Nexus AI</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</li>
+                <li><i class="fa-solid fa-users"></i> Leads</li>
+                <li><i class="fa-solid fa-envelope"></i> Campaigns</li>
+                <li><i class="fa-solid fa-gear"></i> Settings</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div class="header-left">
+                    <h1>Leads Pipeline</h1>
+                    <p>Manage and analyze your prospective clients with AI.</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="open-new-lead-modal">
+                        <i class="fa-solid fa-plus"></i> Add Lead
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Row -->
+            <div class="stats-grid">
+                <div class="stat-card glass">
+                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-content">
+                        <h3>Total Leads</h3>
+                        <p id="stat-total">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon success"><i class="fa-solid fa-check"></i></div>
+                    <div class="stat-content">
+                        <h3>Contacted</h3>
+                        <p id="stat-contacted">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon warning"><i class="fa-solid fa-star"></i></div>
+                    <div class="stat-content">
+                        <h3>New</h3>
+                        <p id="stat-new">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leads Table -->
+            <div class="table-container glass">
+                <table id="leads-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>AI Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-body">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <!-- AI Analysis Sidebar Modal -->
+        <aside class="ai-panel glass" id="ai-panel">
+            <div class="ai-panel-header">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> AI Analysis</h2>
+                <button class="icon-btn" id="close-ai-panel"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="ai-panel-content">
+                <div id="ai-loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Gemini is analyzing...</p>
+                </div>
+                <div id="ai-results" class="hidden">
+                    <div class="ai-badge-group">
+                        <div class="ai-priority-badge" id="ai-priority">High</div>
+                        <div class="ai-cached-badge" id="ai-cached"><i class="fa-solid fa-bolt"></i> Cached</div>
+                    </div>
+                    
+                    <div class="ai-section">
+                        <h4>Recommended Action</h4>
+                        <p id="ai-next-action">Call them today about the new enterprise tier.</p>
+                    </div>
+                    
+                    <div class="ai-section">
+                        <h4>Draft Outreach Message</h4>
+                        <div class="message-box">
+                            <p id="ai-outreach">Hi Satya, I noticed...</p>
+                            <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText(document.getElementById('ai-outreach').innerText)">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- New Lead Modal -->
+        <div class="modal-overlay hidden" id="new-lead-modal">
+            <div class="modal glass">
+                <div class="modal-header">
+                    <h2>Add New Lead</h2>
+                    <button class="icon-btn" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="new-lead-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Initial Status</label>
+                        <select id="status">
+                            <option value="New">New</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Qualified">Qualified</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Lead</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/app.js"></script>
+</body>
+</html>

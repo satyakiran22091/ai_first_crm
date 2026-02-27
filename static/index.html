@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI CRM Dashboard</title>
-    <meta name="description" content="AI-powered customer relationship management dashboard">
+    <title>Kelmorix | AI-First CRM</title>
+    <meta name="description" content="Kelmorix - High-performance AI-First CRM for sales intelligence">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="logo">
                 <i class="fa-solid fa-bolt"></i>
-                <span>Nexus AI</span>
+                <span>Kelmorix</span>
             </div>
             <ul class="nav-links">
                 <li class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</li>
@@ -82,7 +84,7 @@
                 </table>
             </div>
         </main>
-        
+
         <!-- AI Analysis Sidebar Modal -->
         <aside class="ai-panel glass" id="ai-panel">
             <div class="ai-panel-header">
@@ -99,17 +101,18 @@
                         <div class="ai-priority-badge" id="ai-priority">High</div>
                         <div class="ai-cached-badge" id="ai-cached"><i class="fa-solid fa-bolt"></i> Cached</div>
                     </div>
-                    
+
                     <div class="ai-section">
                         <h4>Recommended Action</h4>
                         <p id="ai-next-action">Call them today about the new enterprise tier.</p>
                     </div>
-                    
+
                     <div class="ai-section">
                         <h4>Draft Outreach Message</h4>
                         <div class="message-box">
                             <p id="ai-outreach">Hi Satya, I noticed...</p>
-                            <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText(document.getElementById('ai-outreach').innerText)">
+                            <button class="btn btn-secondary btn-sm"
+                                onclick="navigator.clipboard.writeText(document.getElementById('ai-outreach').innerText)">
                                 <i class="fa-solid fa-copy"></i>
                             </button>
                         </div>
@@ -156,4 +159,5 @@
     </div>
     <script src="/app.js"></script>
 </body>
+
 </html>

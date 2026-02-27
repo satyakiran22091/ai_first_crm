@@ -1,6 +1,6 @@
-# Nexus AI CRM - AI-First Lead Intelligence
+# Kelmorix CRM - AI-First Lead Intelligence
 
-Nexus AI is a modern, high-performance CRM built to transform static lead data into actionable sales intelligence. Leveraging the power of Google's Gemini LLMs, it provides instant lead prioritization and personalized outreach strategies.
+**Kelmorix** (kel = strength, mor = knowledge, ix = essence) is a modern, high-performance CRM built to transform static lead data into actionable sales intelligence. Leveraging the power of Google's Gemini LLMs, it provides instant lead prioritization and personalized outreach strategies.
 
 ![Live App Preview](https://github.com/satyakiran22091/ai_first_crm/raw/main/static/preview.png) *(Note: Add a screenshot to your static folder if you'd like a preview image here)*
 

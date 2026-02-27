@@ -147,10 +147,11 @@ def analyze_lead(lead_id: int, db: Session = Depends(get_db)):
         }
 
     except Exception as e:
-        return {
-            "error": "AI processing failed",
-            "details": str(e)
-        }
+        print(f"❌ AI Processing Error: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"AI processing failed: {str(e)}"
+        )
 
 @app.put("/leads/{lead_id}")
 def update_lead(lead_id: int, lead_update: LeadUpdate, db: Session = Depends(get_db)):

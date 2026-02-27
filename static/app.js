@@ -148,7 +148,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(`${API_BASE}/analyze/${id}`);
             const data = await res.json();
 
-            if (!res.ok) throw new Error(data.error || "Analysis failed");
+            if (!res.ok) {
+                throw new Error(data.detail || data.error || "Server-side analysis failed");
+            }
+
+            if (data.error) {
+                throw new Error(data.details || data.error);
+            }
 
             // Populate AI Panel
             document.getElementById("ai-priority").textContent = data.ai_analysis.priority;
@@ -169,7 +175,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error("AI Error:", error);
-            aiLoading.innerHTML = `<p style="color: var(--danger)"><i class="fa-solid fa-triangle-exclamation"></i> AI Analysis Failed</p>`;
+            const errorMsg = error.message || "Unknown error";
+            aiLoading.innerHTML = `
+                <div style="color: var(--danger); text-align: center; padding: 1rem;">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                    <p><strong>AI Analysis Failed</strong></p>
+                    <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem;">${errorMsg}</p>
+                </div>
+            `;
         }
     };
 

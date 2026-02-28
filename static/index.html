@@ -14,7 +14,8 @@
 <body>
     <div class="app-container">
         <!-- Sidebar -->
-        <nav class="sidebar">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <nav class="sidebar" id="sidebar">
             <div class="logo">
                 <i class="fa-solid fa-bolt"></i>
                 <span>Kelmorix</span>
@@ -31,7 +32,12 @@
         <main class="main-content">
             <header>
                 <div class="header-left">
-                    <h1>Leads Pipeline</h1>
+                    <div class="mobile-top-bar">
+                        <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <h1>Leads Pipeline</h1>
+                    </div>
                     <p>Manage and analyze your prospective clients with AI.</p>
                 </div>
                 <div class="header-right">

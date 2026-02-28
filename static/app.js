@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const aiLoading = document.getElementById("ai-loading");
     const aiResults = document.getElementById("ai-results");
 
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebar-overlay");
+
     // Create Toast Element
     const toast = document.createElement("div");
     toast.className = "toast-container";
@@ -51,6 +55,24 @@ document.addEventListener("DOMContentLoaded", () => {
     closeNewLeadBtn.addEventListener("click", () => newLeadModal.classList.add("hidden"));
     cancelNewLeadBtn.addEventListener("click", () => newLeadModal.classList.add("hidden"));
     closeAiPanelBtn.addEventListener("click", () => aiPanel.classList.remove("open"));
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        sidebar.classList.toggle("active");
+        sidebarOverlay.classList.toggle("active");
+    }
+
+    mobileMenuBtn.addEventListener("click", toggleMobileMenu);
+    sidebarOverlay.addEventListener("click", toggleMobileMenu);
+
+    // Close sidebar on link click (for mobile)
+    document.querySelectorAll(".nav-links li").forEach(li => {
+        li.addEventListener("click", () => {
+            if (sidebar.classList.contains("active")) {
+                toggleMobileMenu();
+            }
+        });
+    });
 
     // Form submission
     newLeadForm.addEventListener("submit", async (e) => {
@@ -115,11 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
         leads.forEach(lead => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td><strong>${lead.name}</strong></td>
-                <td>${lead.company}</td>
-                <td>${lead.email}</td>
-                <td><span class="status-badge ${lead.status}">${lead.status}</span></td>
-                <td>
+                <td data-label="Name"><strong>${lead.name}</strong></td>
+                <td data-label="Company">${lead.company}</td>
+                <td data-label="Email">${lead.email}</td>
+                <td data-label="Status"><span class="status-badge ${lead.status}">${lead.status}</span></td>
+                <td data-label="AI Actions">
                     <div class="action-btns">
                         <button class="btn btn-sm btn-secondary" onclick="updateLeadStatus(${lead.id}, '${lead.status === 'New' ? 'Contacted' : 'New'}')">
                             <i class="fa-solid fa-rotate"></i> Toggle
